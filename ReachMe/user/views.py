@@ -55,3 +55,7 @@ def logoutUser(request):
 @login_required(login_url='login')
 def dashboardPage(request):
     return render(request, 'user/dashboard.html')
+
+@login_required(login_url='login')
+def settingsPage(request):
+    return render(request, 'user/settings.html')
