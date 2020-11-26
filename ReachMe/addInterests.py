@@ -5,11 +5,14 @@ from user.models import *
 
 """ To execute this file, run command: python manage.py shell < addInterests.py """
 
-listOfInterests = ["ty", "yep", "go"]
+listOfInterests = ["ty", "tf", "yep"]
 
 def Add(curInterest):
     cur = Interest(name=curInterest)
     cur.save()
 
-for curInterest in listOfInterests:
-    Add(curInterest)
+def Work():
+    for curInterest in listOfInterests:
+        Add(curInterest)
+
+Work()
