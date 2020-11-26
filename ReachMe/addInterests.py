@@ -7,8 +7,8 @@ from user.models import *
 
 listOfInterests = ["ty", "yep", "go"]
 
-def Add(cur):
-    cur = Interest(name=cur)
+def Add(curInterest):
+    cur = Interest(name=curInterest)
     cur.save()
 
 for curInterest in listOfInterests:
