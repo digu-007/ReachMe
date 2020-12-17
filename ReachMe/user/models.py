@@ -21,8 +21,8 @@ class UserInfo(models.Model):
     profile_pic = models.ImageField(null=True, blank = True)
     date_of_birth = models.DateField(max_length=8, null=True)
     gender = models.CharField(max_length=15, null=True, blank=True, choices=GENDER_OPTIONS)
+    city = models.CharField(max_length=127, null=True)
     interests = models.ManyToManyField(Interest)
-    # location =
 
     def __str__(self):
         return self.name
