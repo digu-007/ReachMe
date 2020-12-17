@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, CreateUserInfoForm
 
 
 @login_required(login_url='login')
@@ -23,8 +23,13 @@ def registerPage(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+
             messages.success(request, 'Account was created for ' + username)
-            return redirect('login')
+            return redirect('settings')
 
     context = {'form':form}
     return render(request, 'user/register.html', context)
@@ -58,4 +63,13 @@ def dashboardPage(request):
 
 @login_required(login_url='login')
 def settingsPage(request):
-    return render(request, 'user/settings.html')
+    form = CreateUserInfoForm(initial={'user': request.user})
+
+    if request.method == 'POST':
+        form = CreateUserInfoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+
+    context = {'form':form}
+    return render(request, 'user/settings.html', context)

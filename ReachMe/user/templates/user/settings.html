@@ -5,4 +5,11 @@
 
 <p>User settings</p>
 
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit" name="Save settings">
+</form>
+
 {% endblock %}
