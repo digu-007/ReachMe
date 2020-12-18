@@ -16,7 +16,11 @@
       <div class="col s3">
         <div class="card small">
           <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="{{ user.profile_pic.url }}">
+            {% if user.profile_pic %}
+              <img class="activator" src="{{ user.profile_pic.url }}">
+            {% else %}
+              <img class="activator" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh8IVSzJJRYyxTfrE-z5z_JvXcB7h_oPz_Yg&usqp=CAU">
+            {% endif %}
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">{{ user.name }}<i class="material-icons right">more_vert</i></span>
@@ -25,31 +29,18 @@
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">{{ user.first_name }} {{ user.last_name }}<i class="material-icons right">close</i></span>
             <ul>
-              <li>Gender: {{ user.gender }}</li>
-              <li>Date of Birth: {{ user.date_of_birth }}</li>
+              <li><strong>Gender:</strong> {{ user.gender }}</li>
+              <li><strong>Date of Birth:</strong> {{ user.date_of_birth }}</li>
+              <li><strong>City:</strong> {{ user.city }}</li>
+              <li>
+                <strong>Interests:</strong>
+                {% for interest in user.interests.all %}{% if forloop.counter != 1 %}, {% endif %}{{ interest }}{% endfor %}
+              </li>
             </ul>
           </div>
         </div>
       </div>
     {% endfor %}
-    
-    <div class="col s3">
-      <div class="card small">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCPXsiUGMtSxttOA401Fz_cRXtoOB9AyZVaQ&usqp=CAU">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">Card Title<i
-              class="material-icons right">more_vert</i></span>
-          <p><a href="#">This is a link</a></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-          <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 {% endblock %}
