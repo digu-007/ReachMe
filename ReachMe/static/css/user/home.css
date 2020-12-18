@@ -1,0 +1,30 @@
+.card.small {
+  width: 15rem;
+}
+
+#recommendations-container {
+  margin-top: 1%;
+}
+
+.card.small .card-image, .card.medium .card-image, .card.large .card-image {
+  height: 60%;
+}
+
+.card .card-title {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.card .card-reveal {
+  padding: 24px;
+  position: absolute;
+  background-color: #caf0f8;
+  width: 100%;
+  overflow-y: auto;
+  left: 0;
+  top: 100%;
+  height: 100%;
+  z-index: 3;
+  display: none;
+  color: #03045e;
+}
