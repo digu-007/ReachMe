@@ -12,3 +12,5 @@ six==1.15.0
 sqlparse==0.4.1
 toml==0.10.2
 wrapt==1.12.1
+geopy==2.0.0
+geoip2==4.1.0
