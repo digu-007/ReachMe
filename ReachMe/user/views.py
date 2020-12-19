@@ -20,7 +20,7 @@ def homePage(request):
 
 def registerPage(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('/')
 
     form = CreateUserForm()
 
