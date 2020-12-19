@@ -5,12 +5,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
+from .models import UserInfo
 from .forms import CreateUserForm, CreateUserInfoForm
 
 
 @login_required(login_url='login')
 def homePage(request):
-    return render(request, 'user/home.html')
+    """User will see recommendations of other users here"""
+    context = {
+        "recommendations": UserInfo.objects.all()
+    }
+    return render(request, 'user/home.html', context)
 
 def registerPage(request):
     if request.user.is_authenticated:
