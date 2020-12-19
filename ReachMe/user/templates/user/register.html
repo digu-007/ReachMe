@@ -1,13 +1,52 @@
-<h1>Register</h1>
+{% load static %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
+<!DOCTYPE HTML>
+<html lang="en">
+<html>
 
-    <input type="submit" name="Create User">
-</form>
+<head>
+  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/user/register.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
 
-{{form.errors}}
+<body class="body">
+  <div class="register-page">
+    <div class="form">
+      <form action="" method="POST">
+        <lottie-player
+          src="https://assets4.lottiefiles.com/datafiles/XRVoUu3IX4sGWtiC3MPpFnJvZNq7lVWDCa8LSqgS/profile.json"
+          background="transparent" speed="1" style="justify-content: center;" loop autoplay></lottie-player>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <div class="fieldWrapper">
+          {{ form.username.errors }}
+          {{ form.username }}
+        </div>
+        <div class="fieldwrapper">
+          {{ form.email.errors }}
+          {{ form.email }}
+        </div>
+        <div class="fieldwrapper">
+          {{ form.password1.errors }}
+          {{ form.password1 }}
+        </div>
+        <div class="fieldwrapper">
+          {{ form.password2.errors }}
+          {{ form.password2 }}
+        </div>
+        <button>Register</button>
+      </form>
+      <form class="login-form">
+        <button type="button" onclick="window.location.href='/login'">Already have an account?</button>
+      </form>
+    </div>
+  </div>
+</body>
 
-<p>Already have an account?</p>
-<a href="{% url 'login' %}">Login</a>
+</html>

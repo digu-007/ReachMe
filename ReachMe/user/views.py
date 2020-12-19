@@ -17,6 +17,7 @@ def homePage(request):
     }
     return render(request, 'user/home.html', context)
 
+
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('dashboard')
@@ -36,12 +37,13 @@ def registerPage(request):
             messages.success(request, 'Account was created for ' + username)
             return redirect('settings')
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'user/register.html', context)
+
 
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect('/')
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -51,30 +53,33 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('/')
         else:
             messages.info(request, 'Username or password is incorrect')
 
     context = {}
     return render(request, 'user/login.html', context)
 
+
 def logoutUser(request):
     logout(request)
     return redirect('login')
 
+
 @login_required(login_url='login')
 def dashboardPage(request):
     return render(request, 'user/dashboard.html')
+
 
 @login_required(login_url='login')
 def settingsPage(request):
     form = CreateUserInfoForm(initial={'user': request.user})
 
     if request.method == 'POST':
-        form = CreateUserInfoForm(request.POST)
+        form = CreateUserInfoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('/')
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'user/settings.html', context)
