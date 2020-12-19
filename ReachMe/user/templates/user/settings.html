@@ -1,15 +1,76 @@
-{% extends 'user/main.html' %}
 {% load static %}
 
-{% block content %}
+<!DOCTYPE HTML>
+<html lang="en">
+<html>
 
-<p>User settings</p>
+<head>
+  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/user/settings.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
+</head>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
+<body class="body">
+  <div class="settings-page">
+    <div class="form">
+      <form action="" method="POST" enctype='multipart/form-data'>
+        <lottie-player
+          src="https://assets4.lottiefiles.com/datafiles/XRVoUu3IX4sGWtiC3MPpFnJvZNq7lVWDCa8LSqgS/profile.json"
+          background="transparent" speed="1" style="justify-content: center;" loop autoplay></lottie-player>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+          {{ form.name.errors }}
+          {{ form.name }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.phone.errors }}
+          {{ form.phone }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.profile_pic.errors }}
+          {{ form.profile_pic }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.date_of_birth.errors }}
+          {{ form.date_of_birth }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.gender.errors }}
+          {{ form.gender }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.city.errors }}
+          {{ form.city }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.interests.errors }}
+          {{ form.interests }}
+        </div>
+        <div class="fieldWrapper">
+          {{ form.bio.errors }}
+          {{ form.bio }}
+        </div>
+        <button>Register</button>
+      </form>
+      <form class="login-form">
+        <button type="button" onclick="window.location.href='/login'">Already have an account?</button>
+      </form>
+    </div>
+  </div>
+</body>
 
-    <input type="submit" name="Save settings">
-</form>
+<script>
+  $(".chosen-select").chosen();
+</script>
 
-{% endblock %}
+</html>
