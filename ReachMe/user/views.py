@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 from .models import UserInfo
+from .utils import get_recommendations
 from .forms import CreateUserForm, CreateUserInfoForm
 
 import numpy as np
@@ -21,17 +22,9 @@ model = unpickler.load()
 @login_required(login_url='login')
 def homePage(request):
     """User will see recommendations of other users here"""
-    int_features = [0] * 8
-    for x in UserInfo.objects.filter(user=request.user).values_list('interests'):
-        int_features[x[0] - 1] = 1
-    print(int_features)
-    final_features = [np.array(int_features)]
-    prediction = model.predict(final_features)
-    
-    # output = round(prediction[0], 2)
-    print("Prediction", prediction)
+    recommendations = get_recommendations(request.user)
     context = {
-        "recommendations": UserInfo.objects.all()
+        "recommendations": recommendations,
     }
     return render(request, 'user/home.html', context)
 
@@ -89,6 +82,7 @@ def dashboardPage(request):
     return render(request, 'user/dashboard.html', context={
         'user': UserInfo.objects.filter(user=request.user).first()
     })
+
 
 
 @login_required(login_url='login')

@@ -26,7 +26,8 @@ class UserInfo(models.Model):
     gender = models.CharField(max_length=15, null=True, blank=True, choices=GENDER_OPTIONS)
     city = models.CharField(max_length=127, null=True)
     interests = models.ManyToManyField(Interest)
-    bio = models.CharField(max_length=56)
+    bio = models.CharField(max_length=56, null=True)
+    match = models.CharField(max_length=15, null=True, blank=True)
 
     def __str__(self):
         return self.name
