@@ -6,14 +6,18 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 from .models import UserInfo
+from .utils import get_recommendations
 from .forms import CreateUserForm, CreateUserInfoForm
 
 
 @login_required(login_url='login')
 def homePage(request):
     """User will see recommendations of other users here"""
+
+    recommendations = get_recommendations(request.user)
+
     context = {
-        "recommendations": UserInfo.objects.all()
+        "recommendations": recommendations,
     }
     return render(request, 'user/home.html', context)
 
