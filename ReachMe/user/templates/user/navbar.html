@@ -2,10 +2,10 @@
     <nav>
         <div class="nav-wrapper">
             <div class="container" id="navbar-container">
-                <a href="#" class="brand-logo">ReachMe</a>
+                <a href="/" class="brand-logo">Reachme</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
+                    <li>Welcome, {{ request.user }}!</li>
+                    <li><a href="/dashboard">Dashboard</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
