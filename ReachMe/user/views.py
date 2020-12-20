@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
@@ -9,13 +10,19 @@ from .models import UserInfo
 from .utils import get_recommendations
 from .forms import CreateUserForm, CreateUserInfoForm
 
+import numpy as np
+import pickle, os
+
+
+f = open(os.path.join(settings.BASE_DIR, 'static/knn.pkl'), 'rb')
+unpickler = pickle.Unpickler(f)
+model = unpickler.load()
+
 
 @login_required(login_url='login')
 def homePage(request):
     """User will see recommendations of other users here"""
-
     recommendations = get_recommendations(request.user)
-
     context = {
         "recommendations": recommendations,
     }
@@ -72,7 +79,10 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def dashboardPage(request):
-    return render(request, 'user/dashboard.html')
+    return render(request, 'user/dashboard.html', context={
+        'user': UserInfo.objects.filter(user=request.user).first()
+    })
+
 
 
 @login_required(login_url='login')
