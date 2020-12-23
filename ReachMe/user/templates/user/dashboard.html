@@ -17,11 +17,14 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img src="{{ user.profile_pic.url }} " alt="Admin" class="rounded-circle"
-                width="150">
+              {% if user.profile_pic %}
+                <img class="rounded-circle" src="{{ user.profile_pic.url }}" width="150">
+              {% else %}
+                <img class="rounded-circle" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh8IVSzJJRYyxTfrE-z5z_JvXcB7h_oPz_Yg&usqp=CAU" width="150">
+              {% endif %}
               <div class="mt-3">
                 <h4>{{ user.name }}</h4>
-                <p class="text-secondary mb-1">{{ user.bio }}. Did you know that people also know me by the name Lace?</p>
+                <p class="text-secondary mb-1">{{ user.bio }}</p>
                 <!-- <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
                 <button class="btn btn-primary">Chat</button>
                 <button class="btn btn-outline-primary">Message</button>
@@ -95,7 +98,7 @@
               </div>
             </div>
             <hr>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-sm-3">
                 <h6 class="mb-0">Email</h6>
               </div>
@@ -103,7 +106,7 @@
                 {{ user.user.email }}
               </div>
             </div>
-            <hr>
+            <hr> -->
             <div class="row">
               <div class="col-sm-3">
                 <h6 class="mb-0">Phone</h6>

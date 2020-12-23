@@ -10,6 +10,10 @@
   height: 60%;
 }
 
+.card.small {
+  height: 320px;
+}
+
 .card .card-title {
   font-size: 20px;
   font-weight: 300;
@@ -26,5 +30,9 @@
   height: 100%;
   z-index: 3;
   display: none;
+  color: #03045e;
+}
+
+#welcome-text {
   color: #03045e;
 }

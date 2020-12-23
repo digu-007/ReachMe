@@ -35,6 +35,8 @@ def get_distance(a, b):
 
 def get_age_difference(a, b):
     """Calculates score according to age difference between two users"""
+    if a == None or b == None:
+        return 0
     difference = abs(calculate_age(a) - calculate_age(b))
     if difference >= 24:
         return 0.0

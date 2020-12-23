@@ -25,6 +25,7 @@ def homePage(request):
     recommendations = get_recommendations(request.user)
     context = {
         "recommendations": recommendations,
+        "user_id": UserInfo.objects.filter(user=request.user).first().id
     }
     return render(request, 'user/home.html', context)
 
@@ -78,11 +79,11 @@ def logoutUser(request):
 
 
 @login_required(login_url='login')
-def dashboardPage(request):
+def dashboardPage(request, user_id):
     return render(request, 'user/dashboard.html', context={
-        'user': UserInfo.objects.filter(user=request.user).first()
+        'user': UserInfo.objects.filter(id=user_id).first(),
+        "user_id": UserInfo.objects.filter(user=request.user).first().id
     })
-
 
 
 @login_required(login_url='login')
