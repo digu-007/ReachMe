@@ -3,9 +3,29 @@ from django.contrib.auth.models import User
 
 from user.models import *
 
-""" To execute this file, run command: python manage.py shell < addInterests.py """
+listOfInterests = [
+    "Coding",
+    "Basketball",
+    "Running",
+    "Cooking",
+    "Video Games",
+    "Trekking",
+    "Dancing",
+    "Sleeping"
+]
 
-listOfInterests = ["ty", "tf", "yep"]
+"""
+Chirag Thakur
+Digvijay Janartha
+Rohit Sharma
+Abhimanyu Singh
+Rohit Mehta
+Mannat Kapil
+Lakshay Gupta
+Rohit Kumar
+Mukul Koundal
+Apresh Koundal
+"""
 
 def Add(curInterest):
     cur = Interest(name=curInterest)

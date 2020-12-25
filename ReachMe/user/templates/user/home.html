@@ -11,6 +11,11 @@
 
 {% block content %}
 <div class="container" id="recommendations-container">
+  <div class=row">
+    <div class="col s12">
+      <h5 id="welcome-text">Some recommendations based on your profile</h5>
+    </div>
+  </div>
   <div class="row">
     {% for user in recommendations %}
       <div class="col s3">
@@ -38,7 +43,7 @@
                 {% for interest in user.interests.all %}{% if forloop.counter != 1 %}, {% endif %}{{ interest }}{% endfor %}
               </li>
             </ul><br><br>
-            <center><a class="waves-effect waves-light btn-small">Open profile</a></center>
+            <center><a href="/dashboard/{{ user.id }}" class="waves-effect waves-light btn-small">Open profile</a></center>
           </div>
         </div>
       </div>
