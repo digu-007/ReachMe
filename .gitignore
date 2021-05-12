@@ -125,3 +125,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Random notes regarding the project
+ReachMe/notes.txt
+
+# Profile pictures of users in database (used for dummy data)
+ReachMe/Profile pictures
+ReachMe/static/images/*
