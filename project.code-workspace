@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "ReachMe/"
+		}
+    ],
+    "settings": {
+        "python.pythonPath": "/home/tauhrick/Desktop/ReachMe/venv/bin/python",
+        "python.terminal.activateEnvInCurrentTerminal": true,
+        "python.linting.pylintEnabled": true,
+        "python.linting.enabled": true
+    }
+}
